@@ -1,0 +1,62 @@
+<section class="todoapp" *ngIf="tdlObs | async as tdls">
+    <header class="header">
+      <h1>{{tdls.label}}</h1> <!-- le label de la liste  -->
+      <form (ngSubmit)="create(lab.value); lab.value=''">
+        <input  name        = "newTodoInput"
+                class       = "new-todo"
+                placeholder = "Que faire?"
+                autofocus #lab/>
+      </form>
+    </header>
+    <section class="main">
+      <input  class="toggle-all"
+              type="checkbox"
+              name="toggleAll"
+              [ngModel]="tdls.allDone"
+      />
+      <label for="toggleAll" *ngIf="tdls.items.length>0"
+      (click)="updateAllDone(!tdls.allDone,tdls.items)"
+      >Mark all as complete</label>
+      <ul class="todo-list"> <!-- inclure les todoitem ici dans des (balises li)  -->
+        <li *ngFor="let item of tdls.displayedItems; trackBy : trackById"
+        [class.editing]="ComponentItem.cocher"
+        [class.completed]="item.isDone"
+        >
+            <app-todo-item [data]="item"
+                           (remove)="remove($event)"
+                           (update)="updateItem(item,$event)"
+            #ComponentItem>
+            </app-todo-item>
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" *ngIf="tdls.items.length>0">
+      <span class="todo-count"><strong>{{tdls.remaining}}</strong> restantes</span>
+      <ul class="filters">
+        <li>
+          <a class="filterAll"
+          [class.selected]="tdls.filter === fActive"
+          (click)="setFilter(fAll)"
+          >Tous</a>
+        </li>
+        <li>
+          <a class="filterActives"
+          [class.selected]="tdls.filter === fActive"
+          (click)="setFilter(fActive)"
+          >Actifs</a>
+        </li>
+        <li>
+          <a class="filterCompleted"
+          [class.selected]="tdls.filter === fCompleted"
+          (click)="setFilter(fCompleted)"
+          >Complétés</a>
+        </li>
+      </ul>
+      <button class="clear-completed"
+      *ngIf="tdls.remaining !== tdls.items.length"
+      (click)="supprimerAllDone(tdls.items)"
+      >
+        Supprimer cochées</button>
+    </footer>
+  </section>
+  
