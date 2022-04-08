@@ -26,3 +26,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## saveInBase
+la fonction qui nous permet d'enregistrer les élements (todolist) dans la base de données.
+
+## getBd
+fonction qui nous permet de recuperer les informations enregistrées dans la base de données par rapport àl'email de l'utilisateur .
+## demandedata
+fonction qui nous permet d'importer les données dans la base de données.
