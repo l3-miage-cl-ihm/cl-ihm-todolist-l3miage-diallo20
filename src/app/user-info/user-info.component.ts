@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import  firebase from 'firebase/compat/app';
+
 
 @Component({
   selector: 'app-user-info',
@@ -8,11 +9,13 @@ import  firebase from 'firebase/compat/app';
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  @Output() importBase = new EventEmitter()
 
   constructor(public auth : AngularFireAuth){
   }
-  connexion (){ 
-   this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+  async connexion (){ 
+   await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+   this.demandedata()
  } 
  deconnexion(){ 
  this.auth.signOut()
@@ -20,5 +23,9 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+demandedata(){
+  this.importBase.emit()
+}
 
 }

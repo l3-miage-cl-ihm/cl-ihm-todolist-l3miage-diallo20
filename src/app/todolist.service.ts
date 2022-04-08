@@ -60,4 +60,9 @@ export class TodolistService {
     return this;
   }
 
+
+  imporforbd(todolist: TodoList ){
+    this.subj.next(todolist)
+  }
+
 }
