@@ -1,9 +1,9 @@
 <div *ngIf="auth.user | async as user; else showlogin">
-    <h1>hello {{user.displayName}}!</h1>
+    <h1>Vous êtes {{user.displayName}}!</h1>
     <img src="{{user.photoURL}}"/>
-    <button (click)="deconnexion()">se deconnecter</button>
+    <button (click)="deconnexion()" style="background-color:aqua;color:red; margin: 15px; font-size: 15px;">se deconnecter</button>
   </div>
   <ng-template #showlogin>
   <p>Please login .</p>
-  <button (click)="connexion()"> login with google </button>
+  <button (click)="connexion()" style="background-color:aqua; color:red; font-size: 15px;"> se connecter avec son compte google </button>
   </ng-template>
