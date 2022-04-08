@@ -34,3 +34,5 @@ la fonction qui nous permet d'enregistrer les élements (todolist) dans la base 
 fonction qui nous permet de recuperer les informations enregistrées dans la base de données par rapport àl'email de l'utilisateur .
 ## demandedata
 fonction qui nous permet d'importer les données dans la base de données.
+## user-info
+un composant qui nous permet de gerer la connexion et la déconnexion de l'utilisateur.
